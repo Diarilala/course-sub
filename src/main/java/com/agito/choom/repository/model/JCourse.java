@@ -1,12 +1,10 @@
 package com.agito.choom.repository.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
-
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
+import lombok.*;
 
 @Entity
 @Table(name = "course")
@@ -16,16 +14,14 @@ import java.util.UUID;
 @Setter
 @Builder
 public class JCourse {
-    @Id
-    @GeneratedValue
-    private UUID id;
+  @Id @GeneratedValue private UUID id;
 
-    @Column(nullable = false, unique = true)
-    private String title;
+  @Column(nullable = false, unique = true)
+  private String title;
 
-    private Instant startDate;
-    private Instant endDate;
+  private Instant startDate;
+  private Instant endDate;
 
-    @OneToMany(mappedBy = "course")
-    private List<JSubscription> subscriptions;
+  @OneToMany(mappedBy = "course")
+  private List<JSubscription> subscriptions;
 }
