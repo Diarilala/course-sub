@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -24,4 +25,7 @@ public class JCourse {
 
     private Instant startDate;
     private Instant endDate;
+
+    @OneToMany(mappedBy = "course")
+    private List<JSubscription> subscriptions;
 }
