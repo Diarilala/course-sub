@@ -3,14 +3,14 @@ package com.agito.choom.model;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @Builder
 @Getter
-public class User {
+public class Subscription {
     private UUID id;
-    private String firstName;
-    private String lastName;
-    private String username;
-    private String email;
+    private Instant createdAt;
+    private UUID courseId;
+    private UUID userId;
 }
