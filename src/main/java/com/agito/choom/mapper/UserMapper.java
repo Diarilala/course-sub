@@ -22,7 +22,7 @@ public class UserMapper {
         return entities.stream().map(this::toModel).toList();
     }
 
-    public JUser toEntity(JUser model) {
+    public JUser toEntity(User model) {
         return JUser.builder()
                 .id(model.getId())
                 .firstName(model.getFirstName())

@@ -14,7 +14,7 @@ public class CourseService {
     private CourceRepository repository;
     private CourseMapper mapper;
 
-    public Course findById(UUID id) {
+    public Course getById(UUID id) {
         return mapper.toModel(
                 repository.findById(id).orElseThrow(() -> new RuntimeException("Course with id " + id + " not found!"))
         );
