@@ -1,7 +1,6 @@
 package com.agito.choom.endpoint.rest.controller.dto;
 
 import java.util.UUID;
-
 import lombok.*;
 
 @Builder
