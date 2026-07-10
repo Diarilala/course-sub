@@ -1,21 +1,26 @@
 package com.agito.choom.mapper;
 
+import com.agito.choom.endpoint.rest.controller.dto.SubscriptionRequest;
 import com.agito.choom.model.Subscription;
+import com.agito.choom.repository.model.JCourse;
 import com.agito.choom.repository.model.JSubscription;
+import com.agito.choom.repository.model.JUser;
 import com.agito.choom.service.CourseService;
 import com.agito.choom.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
 import java.util.List;
+import java.util.UUID;
 
 @Component
 @AllArgsConstructor
 public class SubscriptionMapper {
-    private UserMapper userMapper;
-    private CourseMapper courseMapper;
     private CourseService courseService;
     private UserService userService;
+    private CourseMapper courseMapper;
+    private UserMapper userMapper;
 
     public Subscription toModel(JSubscription entity) {
         return Subscription.builder()
@@ -41,7 +46,18 @@ public class SubscriptionMapper {
                 .build();
     }
 
-    public List<JSubscription> toEntity(List<Subscription> models) {
+    public List<JSubscription> toEntity(List<Subscription> models, JUser user, JCourse course) {
         return models.stream().map(this::toEntity).toList();
+    }
+
+    public JSubscription toEntity(UUID courseId, SubscriptionRequest subscriptionRequest) {
+        var user = userService.getById(subscriptionRequest.getUserId());
+        var course = courseService.getById(courseId);
+        return JSubscription.builder()
+                .id(UUID.randomUUID())
+                .createdAt(Instant.now())
+                .user(userMapper.toEntity(user))
+                .course(courseMapper.toEntity(course))
+                .build();
     }
 }
