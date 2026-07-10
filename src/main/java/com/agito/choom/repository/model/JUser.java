@@ -12,7 +12,9 @@ import lombok.*;
 @Setter
 @Builder
 public class JUser {
-  @Id @GeneratedValue private UUID id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID id;
 
   @Column(length = 200)
   private String firstName;

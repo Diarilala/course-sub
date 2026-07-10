@@ -14,7 +14,9 @@ import lombok.*;
 @Setter
 @Builder
 public class JCourse {
-  @Id @GeneratedValue private UUID id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID id;
 
   @Column(nullable = false, unique = true)
   private String title;
