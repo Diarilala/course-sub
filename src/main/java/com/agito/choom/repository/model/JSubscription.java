@@ -14,7 +14,9 @@ import org.hibernate.annotations.CreationTimestamp;
 @AllArgsConstructor
 @Builder
 public class JSubscription {
-  @Id @GeneratedValue private UUID id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID id;
 
   @CreationTimestamp private Instant createdAt;
 
